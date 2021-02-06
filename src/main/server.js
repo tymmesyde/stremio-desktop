@@ -21,7 +21,7 @@ function createEngine(infoHash, options) {
     });
 }
 
-app.all('/:infoHash/create', async (req, res) => {
+app.all('/:infoHash([a-f0-9]{40})/create', async (req, res) => {
     const { infoHash } = req.params;
     const options = req.body;
 
@@ -29,7 +29,7 @@ app.all('/:infoHash/create', async (req, res) => {
     res.json(torrent);
 });
 
-app.get('/:infoHash/:index', async (req, res) => {
+app.get('/:infoHash([a-f0-9]{40})/:index', async (req, res) => {
     const { infoHash, index } = req.params;
 
     const engine = await createEngine(infoHash);
